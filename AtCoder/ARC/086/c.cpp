@@ -24,17 +24,15 @@ double EPS = 1e-10;
 
 int main() {
     int n, k; cin >> n >> k;
-    map<int, int> ma;
+    vector<int> v(n + 1, 0);
     REP(i, n) { 
         int a; cin >> a;
-        ma[a]++;
+        v[a]++;
     }
-    int diff = ma.size() - k;
-    if (diff <= 0) {
-        cout << 0 << endl;
-        return 0;
-    }
-
+    DESC(v);
     int ans = 0;
-    
+    REP(i, k) {
+        ans += v[i];
+    }
+    cout << n - ans << endl;
 }
