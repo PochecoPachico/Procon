@@ -24,11 +24,11 @@ double EPS = 1e-10;
 vector<vector<int>> g(200001);
 vector<int> c(200001);
 
-void solve(int i, int p) {
+void dfs(int i, int p) {
     c[i] += c[p];
     for (auto e: g[i]) {
         if (e == p) continue;
-        else solve(e, i);
+        else dfs(e, i);
     }
 }
 
@@ -39,11 +39,14 @@ int main() {
         g[a].push_back(b);
         g[b].push_back(a);
     }
-    REP(i, q) {
+
+    FOR(i, 1, q + 1) {
         int p, x; cin >> p >> x;
         c[p] += x;
     }
-    solve(1, 0);
+
+    dfs(1, 0);
+
     FOR(i, 1, n + 1) {
         cout << c[i] << " ";
     }
