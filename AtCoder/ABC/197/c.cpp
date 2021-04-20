@@ -26,12 +26,12 @@ int main() {
     vector<ll> a(n); REP(i, n) cin >> a[i];
 
     ll ans = 2000000000;
-    for (int i = 0; i < 1 << (n - 1); i++) {
-        ll or_ = 0;
-        ll xor_ = 0;
-        for (int k = 0; k <= n; k++) {
-            if (k < n) or_ |= a[k];
-            if (k == n || (i >> k & 1)) {
+
+    for (int bit = 0; bit < (1 << (n - 1)); bit++) {
+        ll or_ = 0, xor_ = 0;
+        for (int i = 0; i <= n; i++) {
+            if (i < n) or_ |= a[i];
+            if ((bit >> i) & 1 || n == i) {
                 xor_ ^= or_;
                 or_ = 0;
             }
