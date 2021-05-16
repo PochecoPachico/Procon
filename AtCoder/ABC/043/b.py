@@ -1,5 +1,13 @@
-s = input()
+from collections import deque
 
-for i in range(1, len(s)):
-    if s[i] == 'B':
+s = input()
+ans = deque()
+
+for c in s:
+    if c == 'B':
+        if len(ans) != 0:
+            ans.pop()
         continue
+    ans.append(c)
+
+print(''.join(ans))
